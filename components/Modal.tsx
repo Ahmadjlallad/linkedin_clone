@@ -80,7 +80,10 @@ const Modal = ({ handleClose, type }: Props) => {
 
           <div className="p-4 space-y-2">
             <div className="flex items-center space-x-2">
-              <Avatar src={session?.user?.image} className="!h-11 !w-11" />
+              <Avatar
+                src={session?.user?.image as string}
+                className="!h-11 !w-11"
+              />
               <h6>{session?.user?.name}</h6>
             </div>
 
