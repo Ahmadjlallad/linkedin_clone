@@ -20,7 +20,7 @@ import TimeAgo from "timeago-react";
 
 type Props = {
   post: Post;
-  modalPost: any;
+  modalPost?: Boolean;
 };
 
 function Post({ post, modalPost }: Props) {

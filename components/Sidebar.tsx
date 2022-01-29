@@ -1,4 +1,4 @@
-import { Avatar } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
 import Image from "next/image";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
@@ -25,9 +25,9 @@ function Sidebar() {
           <Image src="https://rb.gy/i26zak" layout="fill" priority alt="logo" />
         </div>
         <Avatar
-          onClick={signOut}
-          src={session?.user?.image}
+          src={session?.user?.image as any}
           className="!h-14 !w-14 !border-2 !absolute !top-4 !cursor-pointer"
+          onClick={() => signOut()}
         />
         <div className="mt-5 py-4 space-x-0.5">
           <h4 className="hover:underline decoration-purple-700 underline-offset-1 cursor-pointer">
