@@ -13,7 +13,7 @@ const options: Options = {
 };
 
 let client;
-let clientPromise;
+let clientPromise: Promise<MongoClient>;
 declare global {
   var _mongoClientPromise: any;
 }
@@ -38,4 +38,10 @@ if (process.env.NODE_ENV === "development") {
 
 // Export a module-scoped MongoClient promise. By doing this in a
 // separate module, the client can be shared across functions.
+
 export default clientPromise as Promise<MongoClient>;
+export const connectToDatabase = async () => {
+  const client = await clientPromise;
+  const db = client.db();
+  return { client, db };
+};

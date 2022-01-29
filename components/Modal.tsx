@@ -7,8 +7,8 @@ import { Avatar } from "@mui/material";
 import Form from "./Form";
 import { useRecoilValue } from "recoil";
 import { getPostState } from "../atoms/postAtom";
+import { Post as PostType } from "../types";
 import Post from "./Post";
-
 const dropIn = {
   hidden: {
     y: "-100vh",
@@ -58,7 +58,7 @@ type Props = {
 };
 const Modal = ({ handleClose, type }: Props) => {
   const { data: session } = useSession();
-  const post = useRecoilValue(getPostState);
+  const post = useRecoilValue<PostType>(getPostState);
 
   return (
     <Backdrop onClick={handleClose}>

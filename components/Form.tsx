@@ -1,11 +1,33 @@
 import React from "react";
-
+import { useSession } from "next-auth/react";
+import { useRecoilState } from "recoil";
+import { modalState } from "../atoms/modalAtom";
+import { handlePostState } from "../atoms/postAtom";
 type Props = {};
 
 function Form({}: Props) {
+  const [, isTheModalOpen] = useRecoilState(modalState);
+  const [handlePost, setHandlePost] = useRecoilState(handlePostState);
+  const { data } = useSession();
   const [input, setInput] = React.useState("");
   const [photoInput, setPhotoInput] = React.useState("");
-  const upLoadPost = () => {};
+  const upLoadPost = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await fetch("/api/post", {
+      method: "POST",
+      body: JSON.stringify({
+        input,
+        photoUrl: photoInput,
+        ...data?.user,
+        createdAt: new Date().toString(),
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    isTheModalOpen(false);
+    setHandlePost(true);
+  };
   return (
     <form
       className="flex flex-col relative space-y-2 text-black/75 dark:text-white/75"

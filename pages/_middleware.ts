@@ -10,7 +10,6 @@ export async function middleware(req: MYReq, ev: NextFetchEvent) {
       secret: process.env.SECRET as string,
       secureCookie: process.env.NODE_ENV === "production",
     });
-    console.log(session);
     if (!session) return NextResponse.redirect("/home");
   }
 }

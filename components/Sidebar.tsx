@@ -4,7 +4,7 @@ import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-
+// TODO fix image avatars
 function Sidebar() {
   const router = useRouter();
   const { status, data: session } = useSession({
@@ -26,7 +26,7 @@ function Sidebar() {
         </div>
         <Avatar
           onClick={signOut}
-          src={session?.user?.image as string}
+          src={session?.user?.image}
           className="!h-14 !w-14 !border-2 !absolute !top-4 !cursor-pointer"
         />
         <div className="mt-5 py-4 space-x-0.5">
