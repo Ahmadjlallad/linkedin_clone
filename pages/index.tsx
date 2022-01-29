@@ -12,7 +12,6 @@ import Modal from "../components/Modal";
 import { connectToDatabase } from "../lib/mongodb";
 import { Post, Articles, Location } from "../types";
 import Widgets from "../components/Widgets";
-import { useEffect, useRef } from "react";
 
 interface Props {
   posts: Post[];
@@ -108,11 +107,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWS_API_KEY}
 `);
   const newsArticles = await anewsArticles.json();
-  const fetchLocation = await fetch(
-    `https://extreme-ip-lookup.com/json/?key=${process.env.LOCATION_API_KEY}`
-  );
-  const userLocation: Location = await fetchLocation.json();
-  console.log(userLocation);
+  // const fetchLocation = await fetch(
+  //   `https://extreme-ip-lookup.com/json/?key=${process.env.LOCATION_API_KEY}`
+  // );
+  // const userLocation: Location = await fetchLocation.json();
   return {
     props: {
       posts: serializePosts,
